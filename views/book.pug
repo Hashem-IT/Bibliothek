@@ -1,0 +1,40 @@
+extends layout.pug
+
+
+block content
+    h1(class="p-3 mb-2 bg-dark text-white") Bucher-Info
+    div(class="h-25 d-inline-block w-25 p-3 bg-danger text-white " )
+     ul(class="navbar-nav mr-auto")
+      li(class="nav-item")
+        a(class="w-25 h-25 p-3 text-dark" href="/Ausloggen" ) Ausloggen
+    div(class="h-25 d-inline-block w-25  p-3 bg-primary text-white " )
+     ul(class="navbar-nav mr-auto")
+      li(class="nav-item")
+        a(class="w-25 h-25 p-3 text-dark" href="/Suchen") Suchen
+    div(class="h-25 d-inline-block w-25 p-3 bg-success text-white text-white " )
+     ul(class="navbar-nav mr-auto")
+      li(class="nav-item")
+        a(class="w-25 h-25 p-3 text-dark" href="/Registrierung") Registrierung   
+    div(class="h-25 d-inline-block w-25 p-3 bg-info text- text-white text-white " )
+     ul(class="navbar-nav mr-auto")
+      li(class="nav-item")
+        a(class="w-25 h-25 p-3 text-dark" href="/") Anmeldung  
+    ul(class="list-group")
+        li(class="list-group-item") Title           :         #{book.title}
+        li(class="list-group-item") Autor/in        :         #{book.author}
+        li(class="list-group-item") Veröffentlicht  :         #{book.year}
+        li(class="list-group-item") ISBN            :         #{book.book_id}
+
+    h1
+    form(action="/books/"+book.book_id method="post")
+        div(class="form-group")
+            input(type="text", class="form-control", id='inputUsername', placeholder="Bewertung abgeben", name="textname")
+            input(type="text", class="form-control", id="inputUsernam", placeholder="Bewertung", name="Ratingname")
+
+        button(type="submit", class="w-25 p-3 btn btn-primary") Abegen
+    h1
+    ul(class="list-group")
+        each c in critces
+            li(class="list-group-item")
+                div(href="/books/"+c.book_isbn) #{c.critxt}   #{c.rating}
+                       

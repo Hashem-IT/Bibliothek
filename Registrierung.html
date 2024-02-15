@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+        .head{
+            width: 200px;
+            border: 2px solid #ccc;
+            background: #b3ffff;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #666;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+        input[type=submit] {
+            background-color: #b3ffff;
+            color: #333;
+        }
+        .container {
+            background-color: #ccc;
+            padding: 20px;
+        }
+        #message {
+            display:none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+        }
+        #message p {
+            padding: 10px 35px;
+            font-size: 18px;
+        }
+        .invalid {
+            color: red;
+        }
+        .invalid:before {
+            position: relative;
+            left: -35px;
+            content: "✖";
+        }
+        .info{
+            width: 350px;
+            border: 2px solid #ccc;
+        }
+    </style>
+
+</head>
+<body>
+    <h1 class="head">Registrieren</h1>
+    <div class="container">
+        <form action="/Registrierung" method="post">
+            <label for="usrname">Benutzername</label>
+                <input type="text" id="usrname" name="usrname"  placeholder="Benutzername" required>
+
+            <label for="pin">Passwort</label>
+                <input type="password" id="pin" name="pin" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="passwort" required>
+
+            <input type="submit" value="Anmelden">
+        </form>
+    </div>
+
+    <div id="message">
+        <h3 class="info">Das Passwort muss Folgendes enthalten :</h3>
+            <p id="klein" class="invalid"> <b>Klein          </b> buchstaben</p>
+            <p id="gross" class="invalid"> <b>Gruß           </b> buchstaben</p>
+            <p id="nummer" class="invalid"><b>Nummer         </b></p>
+            <p id="lange" class="invalid"> <b>8 klein Zeichen</b></p>
+    </div>
+
+    <script>
+
+        var inputData = document.getElementById("pin"),
+            klein     = document.getElementById("klein"),
+            gross     = document.getElementById("gross"),
+            nummer    = document.getElementById("nummer"),
+            lange     = document.getElementById("lange");
+
+
+        inputData.onfocus = function() {
+            document.getElementById("message").style.display = "block";
+        }
+        inputData.onblur = function() {
+            document.getElementById("message").style.display = "none";
+        }
+        inputData.onkeyup = function() {
+
+            if(inputData.value.match(/[a-z]/g)) {
+                klein.classList.remove("invalid");
+                klein.classList.add("valid");
+            } else {
+                klein.classList.remove("valid");
+                klein.classList.add("invalid");
+            }
+            if(inputData.value.match(/[A-Z]/g)) {
+                gross.classList.remove("invalid");
+                gross.classList.add("valid");
+            } else {
+                gross.classList.remove("valid");
+                gross.classList.add("invalid");
+            }
+            if(inputData.value.match(/[0-9]/g)) {
+                nummer.classList.remove("invalid");
+                nummer.classList.add("valid");
+            } else {
+                nummer.classList.remove("valid");
+                nummer.classList.add("invalid");
+            }
+            if(inputData.value.length >= 8) {
+                lange.classList.remove("invalid");
+                lange.classList.add("valid");
+            } else {
+                lange.classList.remove("valid");
+                lange.classList.add("invalid");
+            }
+        }
+    </script>
+
+</body>
+</html>

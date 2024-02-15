@@ -1,0 +1,33 @@
+extends layout.pug
+block content
+    h1(class="p-3 mb-2 bg-dark text-white") Bibliothek
+    div(class="h-25 d-inline-block w-25 p-3 bg-danger text-white " )
+     ul(class="navbar-nav mr-auto")
+      li(class="nav-item")
+        a(class="w-25 h-25 p-3 text-dark" href="/Ausloggen" ) Ausloggen
+    div(class="h-25 d-inline-block w-25  p-3 bg-primary text-white " )
+     ul(class="navbar-nav mr-auto")
+      li(class="nav-item")
+        a(class="w-25 h-25 p-3 text-dark" href="/Suchen") Suchen
+    div(class="h-25 d-inline-block w-25 p-3 bg-success text-white text-white " )
+     ul(class="navbar-nav mr-auto")
+      li(class="nav-item")
+        a(class="w-25 h-25 p-3 text-dark" href="/Registrierung") Registrierung
+    div(class="h-25 d-inline-block w-25 p-3 bg-info text- text-white text-white " )
+     ul(class="navbar-nav mr-auto")
+      li(class="nav-item")
+        a(class="w-25 h-25 p-3 text-dark" href="/") Anmeldung     
+    form(action="/Anmeldung" method="post")
+        div(class="form-group")
+            label(for="inputUsername") Anmeldung
+            input(type="text", class="form-control", id="inputUsername", placeholder="Benutzername", name="username")
+        div(class="form-group")
+            label(for="inputPassword") Password
+            input(type="password", class="form-control", id="inputPassword" placeholder="Passwort", name="password")
+        div(class="form-group")
+            button(type="submit", class="w-25 p-3 btn btn-primary") Anmeldung
+        a(href="/Registrierung" class="w-25 p-3 btn btn-secondary" ) Registrieren
+    if Anmeldung_Fehler
+        div(class="alert alert-danger" role="alert") #{Anmeldung_Fehler}
+        
+    
